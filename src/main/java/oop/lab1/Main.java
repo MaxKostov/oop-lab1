@@ -1,6 +1,8 @@
 package oop.lab1;
 
 import oop.lab1.task1.Display;
+import oop.lab1.task2.TextData;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +13,15 @@ public class Main {
         d1.compareSize(d2);
         d2.compareSharpness(d2);
         d3.compareWithMonitor(d1);
+
+
+        TextData td = new TextData(args[0]);
+        System.out.println(td.getFileName());
+        System.out.println(td.getNumberOfVowels());
+        System.out.println(td.getNumberOfConsonants());
+        System.out.println(td.getNumberOfLetters());
+        System.out.println(td.getNumberOfSentences());
+        System.out.println(td.getLongestWord());
+
     }
 }
