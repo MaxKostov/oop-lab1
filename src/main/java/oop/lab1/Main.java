@@ -15,14 +15,9 @@ public class Main {
         d2.compareSharpness(d2);
         d3.compareWithMonitor(d1);
 
-
-        TextData td = new TextData(args[0]);
-        System.out.println(td.getFileName());
-        System.out.println(td.getNumberOfVowels());
-        System.out.println(td.getNumberOfConsonants());
-        System.out.println(td.getNumberOfLetters());
-        System.out.println(td.getNumberOfSentences());
-        System.out.println(td.getLongestWord());
+        System.out.println(" ");
+        TextData td = new TextData(args);
+        td.getTextsWithStat();
 
         Assistant assistant = new Assistant("Irina");
         assistant.assighDisplay(d1);

@@ -4,29 +4,58 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class TextData {
-    private String fileName;
     private String text;
-    private int numberOfVowels;
-    private int numberOfConsonants;
-    private int numberOfLetters;
-    private int numberOfSentences;
-    private String longestWord;
+//    private String fileName;
+//    private int numberOfVowels;
+//    private int numberOfConsonants;
+//    private int numberOfLetters;
+//    private int numberOfSentences;
+//    private String longestWord;
+    private HashMap<String, HashMap<String, Object>> textInfo = new HashMap<>();
 
-    public TextData(String path) {
-        try {
-            this.text = FileReader.readFileIntoString(path);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+    public TextData(String[] pathList) {
+        for (String path : pathList) {
+            try {
+                this.text = FileReader.readFileIntoString(path);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            textInfo.put(getFileName(path), new HashMap<>());
+            textInfo.get(getFileName(path)).put("text", text);
+            textInfo.get(getFileName(path)).put("vowels", vowelNum(text));
+            textInfo.get(getFileName(path)).put("consonants", consonantNum(text));
+            textInfo.get(getFileName(path)).put("letters", vowelNum(text) + consonantNum(text));
+            textInfo.get(getFileName(path)).put("sentences", sentenceNum(text));
+            textInfo.get(getFileName(path)).put("longestWord", longestWord(text));
+
+//            this.fileName = getFileName(path);
+//            this.numberOfVowels = vowelNum(text);
+//            this.numberOfConsonants = consonantNum(text);
+//            this.numberOfLetters = numberOfConsonants + numberOfVowels;
+//            this.numberOfSentences = sentenceNum(text);
+//            this.longestWord = longestWord(text);
         }
-
-        this.fileName = getFileName(path);
-        this.numberOfVowels = vowelNum(text);
-        this.numberOfConsonants = consonantNum(text);
-        this.numberOfLetters = numberOfConsonants + numberOfVowels;
-        this.numberOfSentences = sentenceNum(text);
-        this.longestWord = longestWord(text);
     }
 
+    public void getAllTexts() {
+        for (String file : textInfo.keySet()) {
+            System.out.println(textInfo.get(file).get("text"));
+        }
+    }
+
+    public void getTextsWithStat() {
+        for (String file : textInfo.keySet()) {
+            System.out.println(file);
+            System.out.println(textInfo.get(file).get("text"));
+            System.out.println(textInfo.get(file).get("vowels"));
+            System.out.println(textInfo.get(file).get("consonants"));
+            System.out.println(textInfo.get(file).get("letters"));
+            System.out.println(textInfo.get(file).get("sentences"));
+            System.out.println(textInfo.get(file).get("longestWord"));
+            System.out.println(" ");
+        }
+    }
 
     private String getFileName(String text) {
         List<String> words = Arrays.asList(text.split("/"));
@@ -62,6 +91,7 @@ public class TextData {
         List<String> rawWords = Arrays.asList(text.split(" "));
         List<String> words = rawWords.stream().map(s -> {return s.replaceAll("[^a-zA-Z ]", "");
         }).toList();
+        String longestWord;
 
         return longestWord = words.stream().max(Comparator.comparingInt(String::length)).orElse("");
     }
@@ -76,31 +106,27 @@ public class TextData {
         return sentences;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getLongestWord(String filename) {
+        return (String) textInfo.get(getFileName(filename)).get("longestWord");
     }
 
-    public String getLongestWord() {
-        return longestWord;
+    public int getNumberOfConsonants(String filename) {
+        return (Integer) textInfo.get(getFileName(filename)).get("consonants");
     }
 
-    public int getNumberOfConsonants() {
-        return numberOfConsonants;
+    public int getNumberOfLetters(String filename) {
+        return (Integer) textInfo.get(getFileName(filename)).get("letters");
     }
 
-    public int getNumberOfLetters() {
-        return numberOfLetters;
+    public int getNumberOfSentences(String filename) {
+        return (Integer) textInfo.get(getFileName(filename)).get("sentences");
     }
 
-    public int getNumberOfSentences() {
-        return numberOfSentences;
+    public int getNumberOfVowels(String filename) {
+        return (Integer) textInfo.get(getFileName(filename)).get("vowels");
     }
 
-    public int getNumberOfVowels() {
-        return numberOfVowels;
-    }
-
-    public String getText() {
-        return text;
+    public String getText(String fileName) {
+        return (String) textInfo.get(fileName).get("text");
     }
 }
