@@ -5,13 +5,13 @@ import java.util.*;
 
 public class TextData {
     private String text;
+    private HashMap<String, HashMap<String, Object>> textInfo = new HashMap<>();
 //    private String fileName;
 //    private int numberOfVowels;
 //    private int numberOfConsonants;
 //    private int numberOfLetters;
 //    private int numberOfSentences;
 //    private String longestWord;
-    private HashMap<String, HashMap<String, Object>> textInfo = new HashMap<>();
 
     public TextData(String[] pathList) {
         for (String path : pathList) {
@@ -28,31 +28,32 @@ public class TextData {
             textInfo.get(getFileName(path)).put("letters", vowelNum(text) + consonantNum(text));
             textInfo.get(getFileName(path)).put("sentences", sentenceNum(text));
             textInfo.get(getFileName(path)).put("longestWord", longestWord(text));
-
-//            this.fileName = getFileName(path);
-//            this.numberOfVowels = vowelNum(text);
-//            this.numberOfConsonants = consonantNum(text);
-//            this.numberOfLetters = numberOfConsonants + numberOfVowels;
-//            this.numberOfSentences = sentenceNum(text);
-//            this.longestWord = longestWord(text);
-        }
+            }
+//          this.fileName = getFileName(path);
+//          this.numberOfVowels = vowelNum(text);
+//          this.numberOfConsonants = consonantNum(text);
+//          this.numberOfLetters = numberOfConsonants + numberOfVowels;
+//          this.numberOfSentences = sentenceNum(text);
+//          this.longestWord = longestWord(text);
     }
 
     public void getAllTexts() {
         for (String file : textInfo.keySet()) {
-            System.out.println(textInfo.get(file).get("text"));
+            System.out.println("FileName: " + file);
+            System.out.println("Text: " + textInfo.get(file).get("text"));
+            System.out.println(" ");
         }
     }
 
     public void getTextsWithStat() {
         for (String file : textInfo.keySet()) {
-            System.out.println(file);
-            System.out.println(textInfo.get(file).get("text"));
-            System.out.println(textInfo.get(file).get("vowels"));
-            System.out.println(textInfo.get(file).get("consonants"));
-            System.out.println(textInfo.get(file).get("letters"));
-            System.out.println(textInfo.get(file).get("sentences"));
-            System.out.println(textInfo.get(file).get("longestWord"));
+            System.out.println("FileName: " + file);
+            System.out.println("Text: " + textInfo.get(file).get("text"));
+            System.out.println("Vowels: " + textInfo.get(file).get("vowels"));
+            System.out.println("Consonants" + textInfo.get(file).get("consonants"));
+            System.out.println("Letters: " + textInfo.get(file).get("letters"));
+            System.out.println("Sentences: " + textInfo.get(file).get("sentences"));
+            System.out.println("Longest word: " + textInfo.get(file).get("longestWord"));
             System.out.println(" ");
         }
     }

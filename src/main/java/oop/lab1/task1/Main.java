@@ -1,9 +1,6 @@
-package oop.lab1;
+package oop.lab1.task1;
 
-import oop.lab1.task1.Display;
-import oop.lab1.task2.TextData;
 import oop.lab1.task3.Assistant;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -14,10 +11,7 @@ public class Main {
         d1.compareSize(d2);
         d2.compareSharpness(d2);
         d3.compareWithMonitor(d1);
-
         System.out.println(" ");
-        TextData td = new TextData(args);
-        td.getTextsWithStat();
 
         Assistant assistant = new Assistant("Irina");
         assistant.assighDisplay(d1);
@@ -26,6 +20,6 @@ public class Main {
 
         assistant.assist();
         System.out.println(assistant.buyDisplay(d2));
-
+        System.out.printf("Your assistant %s helped you", assistant.getAssistantName());
     }
 }
