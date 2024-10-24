@@ -18,11 +18,11 @@ public class Display {
         float targetDiagonal = (float) Math.sqrt(Math.pow(m.width, 2) + Math.pow(m.height, 2));
 
         if (currentDiagonal > targetDiagonal) {
-            System.out.println(String.format( "The invoking display (Serial Number: %s) with a diagonal size of %.2f inches is larger than the target display (Serial Number: %s) with a diagonal size of %.2f inches.",
+            System.out.println(String.format( "The invoking display (S/N: %s, %.2f\") is larger than the target display (S/N: %s, %.2f\").",
                     this.model, currentDiagonal, m.model, targetDiagonal));
         }
         else if (currentDiagonal < targetDiagonal) {
-            System.out.println(String.format("The target display (Serial Number: %s) with a diagonal size of %.2f inches is larger than the invoking display (Serial Number: %s) with a diagonal size of %.2f inches.",
+            System.out.println(String.format("The target display (S/N: %s, %.2f\") is larger than the invoking display (S/N: %s, %.2f\").",
                     m.model, targetDiagonal, this.model, currentDiagonal));
         }
         else {

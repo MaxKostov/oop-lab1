@@ -2,6 +2,7 @@ package oop.lab1;
 
 import oop.lab1.task1.Display;
 import oop.lab1.task2.TextData;
+import oop.lab1.task3.Assistant;
 
 
 public class Main {
@@ -22,6 +23,14 @@ public class Main {
         System.out.println(td.getNumberOfLetters());
         System.out.println(td.getNumberOfSentences());
         System.out.println(td.getLongestWord());
+
+        Assistant assistant = new Assistant("Irina");
+        assistant.assighDisplay(d1);
+        assistant.assighDisplay(d2);
+        assistant.assighDisplay(d3);
+
+        assistant.assist();
+        System.out.println(assistant.buyDisplay(d2));
 
     }
 }
